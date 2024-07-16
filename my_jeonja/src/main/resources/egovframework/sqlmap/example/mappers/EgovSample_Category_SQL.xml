@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.category.service.impl.CategoryMapper">
+
+	<resultMap id="category" type="egovframework.example.category.service.CategoryDto">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	
+	<insert id="insert" parameterType="CategoryDto" useGeneratedKeys="true" keyProperty="id">
+
+			INSERT INTO category_tbl
+				( name )
+			VALUES ( #{name} )
+
+	</insert>
+
+	<update id="update">
+
+			UPDATE category_tbl
+			SET NAME = #{name}
+				  WHERE ID = #{id}
+
+	</update>
+
+	<delete id="delete">
+
+			DELETE FROM category_tbl
+			WHERE ID = #{id}
+
+	</delete>
+
+	<select id="findById" resultMap="category">
+
+			SELECT
+				ID, NAME
+			FROM category_tbl
+			WHERE ID = #{id}
+	</select>
+
+	<select id="findBySearch" parameterType="searchCategoryDto" resultType="egovMap">
+
+			SELECT
+				ID, NAME
+			FROM category_tbl
+			WHERE 1=1
+			<if test="searchCondition != null">
+		        <choose>
+		            <when test="searchCondition == 0">
+						AND	name LIKE '%' || #{name} || '%'
+					</when>
+		            <when test="searchCondition == 1">
+						AND	name LIKE '' || #{name} || '%'
+					</when>
+				</choose>
+			</if>
+			ORDER BY ID DESC
+			LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+	</select>
+
+	<select id="countBySearch" parameterType="searchCategoryDto" resultType="int">
+
+			SELECT COUNT(*) totcnt
+			FROM category_tbl
+			WHERE 1=1
+			<if test="searchCondition != null">
+		        <choose>
+		            <when test="searchCondition == 0">
+						AND	name LIKE '%' || #{name} || '%'
+					</when>
+		            <when test="searchCondition == 1">
+						AND	name LIKE '' || #{name} || '%'
+					</when>
+				</choose>
+			</if>
+	</select>
+
+</mapper>
