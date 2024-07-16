@@ -14,9 +14,7 @@
     </title>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/sample.css'/>"/>
     
-    <!--For Commons Validator Client Side-->
-    <script type="text/javascript" src="<c:url value='/cmmn/validator.do'/>"></script>
-    <validator:javascript formName="categoryDto" staticJavascript="false" xhtml="true" cdata="false"/>
+
     
     <script type="text/javaScript" language="javascript" defer="defer">
         <!--
@@ -35,12 +33,9 @@
         /* 글 등록 function */
         function fn_egov_save() {
         	frm = document.detailForm;
-        	if(!validateSampleVO(frm)){
-                return;
-            }else{
-            	frm.action = "<c:url value="${registerFlag == 'create' ? '/addCategory.do' : '/updateCategory.do'}"/>";
-                frm.submit();
-            }
+        	frm.action = "<c:url value="${registerFlag == 'create' ? '/insertCategory.do' : '/updateCategory.do'}"/>";
+            frm.submit();
+            
         }
         
         -->
@@ -77,7 +72,7 @@
     		<tr>
     			<td class="tbtd_caption"><label for="name"><spring:message code="title.sample.name" /></label></td>
     			<td class="tbtd_content">
-    				<form:input path="name" maxlength="30" cssClass="txt"/>
+    				<form:input path="name" maxlength="20" cssClass="txt"/>
     				&nbsp;<form:errors path="name" />
     			</td>
     		</tr>

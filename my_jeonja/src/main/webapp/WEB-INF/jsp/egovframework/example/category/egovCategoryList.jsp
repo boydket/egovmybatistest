@@ -25,6 +25,7 @@
         function fn_egov_addView() {
            	document.listForm.action = "<c:url value='/addCategory.do'/>";
            	document.listForm.submit();
+           	//document.location.href = "./addCategory.do";
         }
         
         /* 글 목록 화면 function */
