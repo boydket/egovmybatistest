@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		:hover {
+			color: #0000ff;
+		}
+		.myinput2 {
+			color: #ee0000;
+		}
+	</style>
+<!-- 	<link ref="stylesheet" href="경로/css파일명"></link> -->
+	<script src="./../js/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+	<div>input form 테스 예제</div>
+	<form>
+		<div>My Form
+			<fieldset>
+			<legend>기본 입력 양식</legend>
+			<label>First Name</label>
+			<div><input type="text" id="firstName" class="myinput1"></div>
+			<label>Email</label>
+			<div><input type="email" id="email" class="myinput1 myinput2" /></div>
+			<label id="telId">Mobile</label>
+			<div><input type="tel" id="mobile" class="myinput1"></div>
+			<label>Password</label>
+			<div><input type="password" id="password" class="myinput1"></div>
+			<label>팀</label>
+			<div>
+				<select id="team">
+					<option value="sun">해조팀</option>
+					<option value="sbsj">상부상조팀</option>
+				</select>
+			</div>
+			<label>Etc</label>
+			<div><textarea></textarea></div>
+			<div><input type="checkbox" id="rememberMe">Remember Me</div>
+			<div><input type="submit"><input type="reset"></div>
+			</fieldset>
+		</div>
+	</form>
+</body>
+<script>
+	$(document).ready(function() {
+		$("#telId")[0].textContent = "Smart Phone Number";
+	});
+</script>
+</html>

@@ -6,7 +6,6 @@ import javax.annotation.Resource;
 
 import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -20,26 +19,24 @@ import org.springframework.web.bind.support.SessionStatus;
 import egovframework.example.category.service.CategoryDto;
 import egovframework.example.category.service.ICategoryService;
 import egovframework.example.category.service.SearchCategoryDto;
-import egovframework.example.sample.service.SampleDefaultVO;
 
 @Controller
 public class EgovCategoryController {
 
 	@Resource(name = "categoryService")
 	private ICategoryService<CategoryDto> categoryService;
-	
+
 	/** EgovPropertyService */
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertiesService;
-	
-	@RequestMapping(value = "/egovCategoryList.do")
+
+	@RequestMapping(value = "/category/egovCategoryList.do")
 	public String selectList(@ModelAttribute("searchVO") SearchCategoryDto searchVO, ModelMap model) throws Exception {
 
-		/** EgovPropertyService.sample */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
 		searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-		/** pageing setting */
+		/** paging setting */
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
@@ -59,23 +56,22 @@ public class EgovCategoryController {
 		return "category/egovCategoryList";
 	}
 
-	@RequestMapping(value = "/addCategory.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/category/addCategory.do", method = RequestMethod.GET)
 	public String addCategoryView(@ModelAttribute("searchVO") SearchCategoryDto searchVO, Model model) throws Exception {
 		model.addAttribute("categoryDto", new CategoryDto());
 		return "category/egovCategoryRegister";
 	}
 	
-	@RequestMapping(value = "/insertCategory.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/category/insertCategory.do", method = RequestMethod.POST)
 	public String addCategory(@ModelAttribute("searchVO") SearchCategoryDto searchVO, CategoryDto categoryDto
 			, BindingResult bindingResult, Model model, SessionStatus status)
 			throws Exception {
-
 		categoryService.insert(categoryDto);
 		status.setComplete();
-		return "forward:/egovCategoryList.do";
+		return "forward:/category/egovCategoryList.do";
 	}
 
-	@RequestMapping("/updateCategoryView.do")
+	@RequestMapping(value = "/category/updateCategoryView.do", method = RequestMethod.GET)
 	public String updateCategoryView(@RequestParam("selectedId") Long id, @ModelAttribute("searchVO") SearchCategoryDto searchVO, Model model) throws Exception {
 		CategoryDto categoryDto = new CategoryDto();
 		categoryDto.setId(id);
@@ -87,19 +83,24 @@ public class EgovCategoryController {
 		return categoryService.findById(categoryDto.getId());
 	}
 
-	@RequestMapping("/updateCategory.do")
+	@RequestMapping("/category/updateCategory.do")
 	public String updateCategory(@ModelAttribute("searchVO") SearchCategoryDto searchVO, CategoryDto categoryDto
 			, BindingResult bindingResult, Model model, SessionStatus status)
 			throws Exception {
 		categoryService.update(categoryDto.getId(), categoryDto);
 		status.setComplete();
-		return "forward:/egovCategoryList.do";
+		return "forward:/category/egovCategoryList.do";
 	}
 
-	@RequestMapping("/deleteCategory.do")
+	@RequestMapping("/category/deleteCategory.do")
 	public String deleteCategory(CategoryDto categoryDto, @ModelAttribute("searchVO") SearchCategoryDto searchVO, SessionStatus status) throws Exception {
 		categoryService.delete(categoryDto.getId());
 		status.setComplete();
-		return "forward:/egovCategoryList.do";
+		return "forward:/category/egovCategoryList.do";
+	}
+
+	@RequestMapping(value = "/sidebar.do", method = RequestMethod.GET)
+	public String addCategoryView(Model model) throws Exception {
+		return "inc/sidebar";
 	}
 }

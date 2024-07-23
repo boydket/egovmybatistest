@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Attribute-Selector</title>
+	<script src="./../js/jquery-3.7.1.min.js"></script>
+	<style>
+		html body div:nth-child(2) div:nth-child(2n + 1) {
+			color: MediumSeaGreen;
+		}
+/* 		#listTest > div:nth-child(2n + 1) { */
+/* 			background-color: red; */
+/* 		} */
+	</style>
+</head>
+<body>
+	<div>속성 선택자 예제</div>
+	<div id="listTest">
+		<div>1</div>
+		<div style="background-image: url('/mybatistest/images/egovframework/cmmn/btn_page_pre1.gif'), url('/mybatistest/images/egovframework/example/btn_bg_r.gif');">2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<hr/>
+		<div style="margin: 200px; padding: 300px; background-image: url('/mybatistest/images/egovframework/example/book.png'), url('/mybatistest/images/egovframework/example/Twitter Png.jfif'); background-repeat: repeat;">6</div>
+		<div>7</div>
+		<div style="margin: 25px 50px 75px 100px; border: 1px; padding: 2px 4px 6px 8px;">8</div>
+		<div style="border-width: 3px;">9</div>
+		<div>10</div>
+		<div><button onclick="JavaScript:clickOnOff();">View On/Off</button></div>
+	</div>
+</body>
+	<script>
+		function clickOnOff() {
+			if ($("#listTest > hr").css("display") == "none") {
+				$("#listTest > hr").show();
+			} else {
+				$("#listTest > hr").hide();
+			}
+		}
+	</script>
+</html>

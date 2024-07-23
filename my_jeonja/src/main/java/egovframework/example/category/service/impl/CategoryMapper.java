@@ -13,6 +13,7 @@ public interface CategoryMapper {
 	void update(CategoryDto dto) throws Exception;
 	void delete(Long id) throws Exception;
 	CategoryDto findById(Long id) throws Exception;
+	
 	List<CategoryDto> findBySearch(SearchCategoryDto search) throws Exception;
 	int countBySearch(SearchCategoryDto search) throws Exception;
 }

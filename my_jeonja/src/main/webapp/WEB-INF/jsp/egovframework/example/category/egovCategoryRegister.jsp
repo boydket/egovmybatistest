@@ -3,7 +3,6 @@
 <%@ taglib prefix="form"      uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %>
 <%@ taglib prefix="spring"    uri="http://www.springframework.org/tags"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
 <head>
@@ -13,29 +12,26 @@
                   <c:if test="${registerFlag == 'modify'}"><spring:message code="button.modify" /></c:if>
     </title>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/sample.css'/>"/>
-    
 
-    
     <script type="text/javaScript" language="javascript" defer="defer">
         <!--
         /* 글 목록 화면 function */
         function fn_egov_selectList() {
-           	document.detailForm.action = "<c:url value='/egovCategoryList.do'/>";
+           	document.detailForm.action = "<c:url value='/category/egovCategoryList.do'/>";
            	document.detailForm.submit();
         }
         
         /* 글 삭제 function */
         function fn_egov_delete() {
-           	document.detailForm.action = "<c:url value='/deleteCategory.do'/>";
+           	document.detailForm.action = "<c:url value='/category/deleteCategory.do'/>";
            	document.detailForm.submit();
         }
         
         /* 글 등록 function */
         function fn_egov_save() {
         	frm = document.detailForm;
-        	frm.action = "<c:url value="${registerFlag == 'create' ? '/insertCategory.do' : '/updateCategory.do'}"/>";
+        	frm.action = "<c:url value="${registerFlag == 'create' ? '/category/insertCategory.do' : '/category/updateCategory.do'}"/>";
             frm.submit();
-            
         }
         
         -->

@@ -6,7 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SearchCategoryDto extends CategoryDto {
-	
 	/** 검색조건 */
 	private int searchCondition = 0;
 	

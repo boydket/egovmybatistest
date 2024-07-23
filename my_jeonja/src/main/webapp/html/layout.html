@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            width: 960px;
+            margin: 0 auto;
+        }
+
+        #firstPage {
+            height: 400px;
+        }
+
+        #firstPage > div {
+            border: 1px solid blue;
+        }
+
+        #aside {
+            width: 200px;
+            float: left;
+        }
+
+        #selection {
+            width: 757px;
+            float: left;
+        }
+
+        #wrap {
+            overflow: hidden;
+            height: 80%;
+        }
+
+        #secondPage {
+            height: 400px;
+        }
+        #secondPage > div {
+            border: 1px solid red;
+        }
+        .clearBox {
+        	clear: both;
+        }
+    </style>
+</head>
+
+<body>
+<div id="firstPage">
+    <div id="header">Header</div>
+    <div id="navigation">Navigation</div>
+    <div id="wrap">
+        <div id="aside">
+            <div>Aside</div>
+            <div>Lorem ipsum asdlfka sdfi sakdf sadfia lsd fkjasdf</div>
+        </div>
+        <div id="selection">
+            <div>Selection</div>
+            <div>Lorem ipsum asdlfka sdfi sakdf sadfia lsd fkjasdf</div>
+        </div>
+    </div>
+    <div id="footer">Footer</div>
+</div>
+<div id="secondPage">
+    <div id="header2">Header 2</div>
+    <div id="navigation2">Navigation 2</div>
+    <div class="clearBox"></div>
+    <div id="aside2">
+        <div>Aside 2</div>
+        <div>Lorem ipsum asdlfka sdfi sakdf sadfia lsd fkjasdf</div>
+    </div>
+    <div id="selection2">
+        <div>Selection 2</div>
+        <div>Lorem ipsum asdlfka sdfi sakdf sadfia lsd fkjasdf</div>
+    </div>
+    <div class="clearBox"></div>
+    <div id="footer2">Footer 2</div>
+</div>
+</body>
+</html>
